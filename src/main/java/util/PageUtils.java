@@ -268,9 +268,10 @@ public class PageUtils {
 
     }
 
-    private static void gerarRelatorioLog (String nomeRobo, Date dataMaquina, Date inicioRobo, Date fimRobo, String caminhoRobo, Map<String,List<String>> dadosAtualizados) throws IOException {
+    public static void gerarRelatorioLog (String nomeRobo, Date dataMaquina, Date inicioRobo, Date fimRobo, String caminhoRelatorio, Map<String, List<String>> dadosAtualizados) throws IOException {
+
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String caminhoArquivo = caminhoRobo + "\\relatorioTempoRobo" + nomeRobo + ".txt";
+        String caminhoArquivo = caminhoRelatorio + "\\relatorioRobo" + nomeRobo + ".txt";
         File relatorioTempoRobo = new File(caminhoArquivo);
         String dataHoje = dateFormat.format(dataMaquina);
 
@@ -288,7 +289,7 @@ public class PageUtils {
         if(!dadosAtualizados.isEmpty()){
             printWriter.println("DADOS ATULIZADOS");
             for(String dado : dadosAtualizados.keySet()){
-                printWriter.println(dadosAtualizados.get(dado).toString());
+                printWriter.println(dadosAtualizados.get(dado).toString() + "\n");
             }
         }
         else {
@@ -299,8 +300,6 @@ public class PageUtils {
 
         printWriter.close();
         System.out.println("Relatório criado com sucesso!");
-
     }
-
 
 }
